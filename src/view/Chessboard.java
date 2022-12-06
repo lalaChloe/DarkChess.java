@@ -1,10 +1,7 @@
 package view;
 
 
-import chessComponent.ChariotChessComponent;
-import chessComponent.EmptySlotComponent;
-import chessComponent.SoldierChessComponent;
-import chessComponent.SquareComponent;
+import chessComponent.*;
 import model.*;
 import controller.ClickController;
 
@@ -92,19 +89,73 @@ public class Chessboard extends JComponent {
     //FIXME:   Initialize chessboard for testing only.
     private void initAllChessOnBoard() {
         Random random = new Random();
+        int GeneralRed=1;
+        int GeneralBlack=1;
+        int AdvisorRed=2;
+        int AdvisorBlack=2;
+        int MinisterRed=2;
+        int MinisterBlack=2;
+        int ChariotRed=2;
+        int ChariotBlack=2;
+        int HorseRed=2;
+        int HorseBLack=2;
+        int SoldierRed=5;
+        int SoldierBlack=5;
+        int CannonRed=2;
+        int CanonBlack=2;
+
         for (int i = 0; i < squareComponents.length; i++) {
             for (int j = 0; j < squareComponents[i].length; j++) {
                 ChessColor color = random.nextInt(2) == 0 ? ChessColor.RED : ChessColor.BLACK;
-                SquareComponent squareComponent;
-                if (random.nextInt(2) == 0) {
+                SquareComponent squareComponent = null;
+                int x=random.nextInt(14);
+                if (x == 0) {
+                    squareComponent = new GeneralChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
+                } else if (x==1){
+                    squareComponent = new GeneralChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
+                } else if (x==2){
+                    squareComponent = new AdvisorChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
+                } else if (x==3) {
+                    squareComponent = new AdvisorChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
+                } else if (x==4) {
+                    squareComponent = new MinisterChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
+                } else if (x==5) {
+                    squareComponent = new MinisterChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
+                } else if (x==6) {
                     squareComponent = new ChariotChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
-                } else {
+                } else if (x==7) {
+                    squareComponent = new ChariotChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
+                } else if (x==8) {
+                    squareComponent = new HorseChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
+                } else if (x==9) {
+                    squareComponent = new HorseChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
+                } else if (x==10) {
                     squareComponent = new SoldierChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
+                } else if (x==11) {
+                    squareComponent = new SoldierChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
+                } else if (x==12){
+                    squareComponent = new CannonChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
+                } else{
+                    squareComponent = new CannonChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
                 }
                 squareComponent.setVisible(true);
                 putChessOnBoard(squareComponent);
             }
         }
+
+//        for (int i = 0; i < squareComponents.length; i++) {
+//            for (int j = 0; j < squareComponents[i].length; j++) {
+//                ChessColor color = random.nextInt(2) == 0 ? ChessColor.RED : ChessColor.BLACK;
+//                SquareComponent squareComponent;
+//                if (random.nextInt(2) == 0) {
+//                    squareComponent = new ChariotChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
+//                } else {
+//                    squareComponent = new SoldierChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), color, clickController, CHESS_SIZE);
+//                }
+//                squareComponent.setVisible(true);
+//                putChessOnBoard(squareComponent);
+//            }
+//        }
 
     }
 
